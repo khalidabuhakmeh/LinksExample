@@ -35,10 +35,10 @@ namespace LinksExample
             // We also have to register the object twice by type (use AutoFac)
             services
                 .AddScoped<WeatherForecastEnricher>()
-                .Add(new ServiceDescriptor(typeof(IEnricher), typeof(WeatherForecastEnricher), ServiceLifetime.Scoped));
+                .AddScoped<IEnricher, WeatherForecastEnricher>();
             
-            services.Add(new ServiceDescriptor(typeof(IEnricher), typeof(WeatherForecastsEnricher), ServiceLifetime.Scoped));
-            
+            services.AddScoped<IEnricher, WeatherForecastsEnricher>();
+
             services.AddScoped<RepresentationEnricher>();
             
             services.AddControllers(cfg =>
